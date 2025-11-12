@@ -16,7 +16,7 @@ public class radix {
 
     public static int[] count(int[] v, int exp) {
         int[] C = new int[10];
-        for(int i = 0; i < C.length;i++) {
+        for(int i = 0; i < v.length;i++) {
             int digito = (v[i]/exp) % 10;
             C[digito] += 1;
         }
