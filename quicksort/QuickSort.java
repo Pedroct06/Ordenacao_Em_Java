@@ -17,7 +17,7 @@ public class QuickSort {
     public static int partLomuto(int[] v, int ini, int fim,int indexMed) {
         int i = ini;
         swap(v, fim, indexMed);
-        int pivot = v[indexMed];
+        int pivot = v[fim];
         for(int j = i; j < fim; j++) {
             if(v[j] < pivot) {
                 swap(v,i,j);
@@ -30,18 +30,20 @@ public class QuickSort {
 
     public static int partHoare(int[] v, int ini, int fim, int indexMed) {
         int pivot = v[indexMed];
-        int i = ini +1;
-        int j = fim +1;
+        int i = ini;
+        int j = fim;
         
-        while(i < j) {
+        while(i <= j) {
             while(v[i] < pivot) {
                 i++;
             }
             while(v[j] > pivot) {
                 j--;
             }
+            if(i < j)
             swap(v,i,j);
         }
+        swap(v, indexMed, j);
         return j;
     }
 
