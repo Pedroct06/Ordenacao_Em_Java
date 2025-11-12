@@ -8,42 +8,42 @@ public class QuickSort {
 
         
         int indexMed = mediana(v, ini, fim);
-        int indexPivot = partLomuto(v, ini, fim, indexMed); // ou indexPivot = partHoare(v,ini,fim,indexMed)
+        swap(v,ini,indexMed);
+        int indexPivot = partLomuto(v, ini, fim); // ou indexPivot = partHoare(v,ini,fim)
         quickSort(v, ini, indexPivot-1); 
         quickSort(v, indexPivot+1, fim);
     }
 
 
-    public static int partLomuto(int[] v, int ini, int fim,int indexMed) {
+    public static int partLomuto(int[] v, int ini, int fim) {
         int i = ini;
-        swap(v, fim, indexMed);
-        int pivot = v[fim];
-        for(int j = i; j < fim; j++) {
+        int pivot = v[ini];
+        for(int j = i+1; j < fim; j++) {
             if(v[j] < pivot) {
-                swap(v,i,j);
                 i++;
+                swap(v,i,j);
             }
         }
-        swap(v, i, fim);
+        swap(v, i, ini);
         return i;
     }
 
-    public static int partHoare(int[] v, int ini, int fim, int indexMed) {
-        int pivot = v[indexMed];
-        int i = ini;
+    public static int partHoare(int[] v, int ini, int fim) {
+        int pivot = v[ini];
+        int i = ini + 1;
         int j = fim;
         
         while(i <= j) {
-            while(v[i] < pivot) {
+            while(i <= j && v[i] < pivot) {
                 i++;
             }
-            while(v[j] > pivot) {
+            while(i <= j && v[j] > pivot) {
                 j--;
             }
             if(i < j)
             swap(v,i,j);
         }
-        swap(v, indexMed, j);
+        swap(v, ini, j);
         return j;
     }
 
